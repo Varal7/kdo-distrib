@@ -1,5 +1,5 @@
 <?php
-$db = new SQLite3('gifts.db');
+require 'sql.php';
 
 function has_firstname($firstname) {
   global $db_id_target, $db_firstname, $db;

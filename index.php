@@ -18,7 +18,8 @@
     </div>
     <h2 class="lead text-center">Brace yourselves. New year gifts are coming.</p>
     <?php
-    $db = new SQLite3('gifts.db');
+    require 'sql.php';
+
 
 
     function find_hash($hash) {

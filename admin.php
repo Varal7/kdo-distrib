@@ -17,7 +17,7 @@
 
         <div>
           <?php
-          $db = new SQLite3('gifts.db');
+          require 'sql.php';
 
 
 
