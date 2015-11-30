@@ -1,40 +1,10 @@
 <?php
 require 'sql.php';
+require 'tools.php';
 
-function has_firstname($firstname) {
-  global $db_id_target, $db_firstname, $db;
-  $sql ='select * from users';
-  $ret = $db->query($sql);
-  while($row = $ret->fetchArray(SQLITE3_ASSOC)){
-      if ($row['firstname'] == $firstname){
-          return true;
-      }
-  }
-  return false;
-}
-
-function getNum(){
+function update($tab){
   global $db;
-  $result = $db->query("SELECT COUNT(*) as count FROM users");
-  $row = $result->fetchArray();
-  return $row['count'];
-}
-
-function myShuffle($n){
-  for ($i = 1; $i<=$n ; $i++){
-    $tab[$i]=$i;
-  }
-  for ($i = $n; $i>0 ; $i--){
-     $j = rand(1,$i-1);
-     $cur = $tab[$i];
-     $tab[$i]=$tab[$j];
-     $tab[$j]=$cur;
-  }
-  return $tab;
-}
-
-function update($tab,$n){
-  global $db;
+  $n = getNum();
   for ($i = 1; $i<= $n ; $i++){
     $statement = $db->prepare('UPDATE users SET target=:target WHERE id=:id;');
     $statement->bindValue(':target', $tab[$i]);
@@ -53,8 +23,7 @@ else if(isset($_POST['last'])){
   header('Location: admin.php?deleted=last');
 }
 else if(isset($_POST['shuffle'])){
-  $number_users = getNum();
-  update(myShuffle($number_users),$number_users);
+  update(myShuffle());
   header('Location: admin.php?shuffled=1');
 }
 else if(isset($_POST['add'])){

@@ -18,8 +18,7 @@
         <div>
           <?php
           require 'sql.php';
-
-
+          require 'tools.php';
 
           function print_warning($string){
               echo  '<div class="alert alert-warning">'.$string.'</div>';
@@ -35,10 +34,17 @@
             global $db;
             $sql ='select * from users';
             $ret = $db->query($sql);
-            echo '<table class="table table-striped"><tr><th>#</th><th>Nom</th><th>Hash</th><th>Cible</th></tr>';
+            echo '<table class="table table-striped"><tr><th>#</th><th>Nom</th><th>Hash</th>';
+            if (isset($_GET['cheat'])){
+                echo '<th>Cible</th></tr>';
+            }
             while($row = $ret->fetchArray(SQLITE3_ASSOC)){
                 echo '<tr><td>'.$row['id'].'</td><td>'.$row['firstname']
-                      .'</td><td>'.$row['hash'].'</td><td>'.$row['target'].'</tr>';
+                    .'</td><td>'.$row['hash'].'</td>';
+                if (isset($_GET['cheat'])){
+                    echo '<td>'.$row['target'];
+                }
+                echo '</tr>';
             }
             echo '</table>';
           }
@@ -95,16 +101,19 @@
           </div>
         </div>
       </div>
-       <div class="row">
-         <div class="col-md-3 col-xs-2"></div>
-         <div class="col-md-6 col-xs-8">
-         <?php
-          if ((isset($_GET['deleted'])) && ($_GET['deleted'] == "last")){
-            print_warning("N'oubliez pas de (re)mélanger !");
-          }
-         ?>
-       </div>
+      <div class="row">
+        <div class="col-md-3 col-xs-2"></div>
+        <div class="col-md-6 col-xs-8">
+        <?php
+         if (!checkShuffle()){
+           print_warning("L'attribution n'est pas/plus correcte ! N'oubliez pas de (re)mélanger.");
+         }
+        ?>
+        </div>
+      </div>
+
     </form>
+
 
 
 
