@@ -10,8 +10,10 @@
     </head>
     <body>
       <?php
+      $url =  $_SERVER['HTTP_HOST'].str_replace('admin.php','index.php',$_SERVER['SCRIPT_NAME']);
       require 'sql.php';
       require 'tools.php';
+
 
       function print_warning($string){
           echo  '<div class="alert alert-warning">'.$string.'</div>';
@@ -24,7 +26,7 @@
       }
 
       function print_list(){
-        global $db;
+        global $db, $url;
         $sql ='select * from users';
         $ret = $db->query($sql);
         echo '<table class="table table-striped"><tr><th>#</th><th>Nom</th><th>Hash</th>';
@@ -41,7 +43,7 @@
                   <p>À l'occasion du nouvel an 2016 qui aura lieu pendant notre marche
                     au Maroc, nous procéderons au tradionnel échange de cadeaux.</p>
                   <p>Découvre la personne à qui tu offriras ton cadeau en cliquant sur ce lien :
-                  <a href="index.php?hash=<?php echo $row['hash']; ?>">http://varal7.fr/maroc/kdo-distrib/index.php?hash=<?php echo $row['hash'] ?></a></p>
+                  <a href="index.php?hash=<?php echo $row['hash']; ?>">http://<?php echo $url; ?>?hash=<?php echo $row['hash'] ?></a></p>
 
 
                 </div>
