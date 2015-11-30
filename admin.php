@@ -39,8 +39,22 @@
                 echo '<th>Cible</th></tr>';
             }
             while($row = $ret->fetchArray(SQLITE3_ASSOC)){
-                echo '<tr><td>'.$row['id'].'</td><td>'.$row['firstname']
-                    .'</td><td>'.$row['hash'].'</td>';
+                echo '<tr><td>'.$row['id'].'</td><td>'.$row['firstname'].'</td>'
+                    .'<td><a data-toggle="collapse" data-target="#collapse'.$row['id'].'">'.$row['hash'].'</a>'
+                    .'<div class="collapse" id="collapse'.$row['id'].'">';
+                    ?>
+                    <div class="well">
+                      <p>Cher <strong><?php echo $row['firstname'] ?></strong>,</p>
+                      <p>À l'occasion du nouvel an 2016 qui aura lieu pendant notre marche
+                        au Maroc, nous procéderons au tradionnel échange de cadeaux.</p>
+                      <p>Découvre la personne à qui tu offriras ton cadeau en cliquant sur ce lien :
+                      <a href="index.php?hash=<?php echo $row['hash']; ?>">http://varal7.fr/maroc/kdo-distrib/index.php?hash=<?php echo $row['hash'] ?></a></p>
+
+
+                    </div>
+                    <?php
+                echo '<div>'
+                    .'</td>';
                 if (isset($_GET['cheat'])){
                     echo '<td>'.$row['target'];
                 }
@@ -113,10 +127,6 @@
       </div>
 
     </form>
-
-
-
-
 
       <script src="jquery.js"></script>
       <script src="bootstrap.min.js"></script>
