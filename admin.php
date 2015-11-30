@@ -3,8 +3,10 @@
     <head>
         <meta charset="utf-8" />
         <title>KDO Maroc</title>
-        <link rel="stylesheet" href="bootstrap.min.css" />
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel=icon href=gift.ico>
+
 
 
     </head>
@@ -79,20 +81,23 @@
         </div>
         <form role="form" method="POST" action="traitement.php">
         <div class="row" style="margin-top:20px">
-          <div class="col-md-3 col-xs-2"></div>
-          <div class="col-md-6 col-xs-8">
+          <div class="col-md-2 col-xs-0"></div>
+          <div class="col-md-8 col-xs-12">
              <div class="input-group centered">
                <input type="text" id="firstname" name="firstname"  class="form-control text-center" placeholder="Prénom Nom" autofocus>
                <span class="input-group-btn">
-                 <button class="btn btn-success" type="submit" name="add">Ajouter</button>
+                 <button class="btn btn-success" type="submit" name="add">
+                   <span class="glyphicon glyphicon-plus" style="margin-right:10px;" aria-hidden="true"></span>
+                   Ajouter
+                 </button>
                </span>
              </div><!-- /input-group -->
            </div>
          </div>
 
          <div class="row text-center">
-           <div class="col-md-3 col-xs-2"></div>
-           <div class="col-md-6 col-xs-8">
+           <div class="col-md-2 col-xs-0"></div>
+           <div class="col-md-8 col-xs-12">
          <?php
           if (isset($_GET['unset'])){
 
@@ -113,24 +118,32 @@
 
      <form role="form" method="POST" action="traitement.php">
        <div class="row" style="margin-top:20px">
-         <div class="col-md-3 col-xs-2"></div>
-          <div class="col-md-6 col-xs-8">
-            <button style="display: block; width: 100%;" class="btn btn-info" name="shuffle" type="submit">Mélanger</button>
+         <div class="col-md-2 col-xs-0"></div>
+          <div class="col-md-8 col-xs-12">
+            <button style="display: block; width: 100%;" class="btn btn-info" name="shuffle" type="submit">
+              <span class="glyphicon glyphicon-random" style="margin-right:10px;" aria-hidden="true"></span>
+              Mélanger
+            </button>
         </div>
       </div>
       <div class="row" style="margin-top:20px">
-        <div class="col-md-3 col-xs-2"></div>
-        <div class="col-md-6 col-xs-8">
+        <div class="col-md-2 col-xs-0"></div>
+        <div class="col-md-8 col-xs-12">
           <div style="display: block; width: 100%;"  class="btn-group" role="group">
-            <button style="display: block; width: 50%;" class="btn btn-warning" type="submit" name="last">Supprimer dernier</button>
-            <button style="display: block; width: 50%;" class="btn btn-danger" type="submit" name="all">Tout supprimer</button>
+            <button style="display: block; width: 50%;" class="btn btn-warning" type="submit" name="last">
+              <span class="glyphicon glyphicon-remove" style="margin-right:10px;" aria-hidden="true"></span>
+              Supprimer dernier
+            </button>
+            <button style="display: block; width: 50%;" class="btn btn-danger" type="submit" name="all">
+              <span class="glyphicon glyphicon-trash" style="margin-right:10px;" aria-hidden="true"></span>
+              Tout supprimer</button>
           </div>
         </div>
       </div>
     </form>
 
-      <script src="jquery.js"></script>
-      <script src="bootstrap.min.js"></script>
+      <script src="js/jquery.js"></script>
+      <script src="js/bootstrap.min.js"></script>
       <?php
       $db->close();
       unset($db); ?>

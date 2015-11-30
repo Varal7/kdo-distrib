@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8" />
         <title>KDO Maroc</title>
-        <link rel="stylesheet" href="bootstrap.min.css" />
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel=icon href=gift.ico>
 
 
     </head>
@@ -81,11 +82,14 @@
 
            <input type="text" id="firstname" name="firstname"  class="form-control text-center" placeholder="Ton prénom" disabled value="<?php echo $db_firstname; ?>">
            <span class="input-group-btn">
-             <button class="btn btn-success" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" autofocus>Confimer</button>
+             <button class="btn btn-success" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" autofocus>
+               <span class="glyphicon glyphicon-ok" style="margin-right:10px;" aria-hidden="true"></span>
+               Confimer</button>
            </span>
          </div><!-- /input-group -->
          <div class="collapse" id="collapseExample">
            <div class="well">
+             <span class="glyphicon glyphicon-gift" style="margin-right:10px;" aria-hidden="true"></span>
              <p>J'aurai le plaisir d'offir un cadeau à <strong><?php echo $db_target; ?>.</strong></p>
            </div>
          </div>
@@ -102,7 +106,7 @@
 
 
     </div>
-    <script src="jquery.js"></script>
-    <script src="bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
