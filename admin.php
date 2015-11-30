@@ -9,59 +9,69 @@
 
     </head>
     <body>
+      <?php
+      require 'sql.php';
+      require 'tools.php';
+
+      function print_warning($string){
+          echo  '<div class="alert alert-warning">'.$string.'</div>';
+      }
+      function print_info($string){
+        echo  '<div class="alert alert-info">'.$string.'</div>';
+      }
+      function print_error($string){
+        echo  '<div class="alert alert-danger">'.$string.'</div>';
+      }
+
+      function print_list(){
+        global $db;
+        $sql ='select * from users';
+        $ret = $db->query($sql);
+        echo '<table class="table table-striped"><tr><th>#</th><th>Nom</th><th>Hash</th>';
+        if (isset($_GET['cheat'])){
+            echo '<th>Cible</th></tr>';
+        }
+        while($row = $ret->fetchArray(SQLITE3_ASSOC)){
+            echo '<tr><td>'.$row['id'].'</td><td>'.$row['firstname'].'</td>'
+                .'<td><a data-toggle="collapse" data-target="#collapse'.$row['id'].'">'.$row['hash'].'</a>'
+                .'<div class="collapse" id="collapse'.$row['id'].'">';
+                ?>
+                <div class="well">
+                  <p>Cher <strong><?php echo $row['firstname'] ?></strong>,</p>
+                  <p>À l'occasion du nouvel an 2016 qui aura lieu pendant notre marche
+                    au Maroc, nous procéderons au tradionnel échange de cadeaux.</p>
+                  <p>Découvre la personne à qui tu offriras ton cadeau en cliquant sur ce lien :
+                  <a href="index.php?hash=<?php echo $row['hash']; ?>">http://varal7.fr/maroc/kdo-distrib/index.php?hash=<?php echo $row['hash'] ?></a></p>
+
+
+                </div>
+                <?php
+            echo '<div>'
+                .'</td>';
+            if (isset($_GET['cheat'])){
+                echo '<td>'.$row['target'];
+            }
+            echo '</tr>';
+        }
+        echo '</table>';
+      }
+       ?>
 
       <div class="container">
         <div class="page-header">
           <h1 class="text-center">Distribution de cadeaux - Adminsitration</h1>
         </div>
 
+        <div class="row text-center">
+          <?php
+           if (!checkShuffle()){
+             print_warning("L'attribution n'est pas/plus correcte ! N'oubliez pas de (re)mélanger.");
+           }
+          ?>
+        </div>
+
         <div>
           <?php
-          require 'sql.php';
-          require 'tools.php';
-
-          function print_warning($string){
-              echo  '<div class="alert alert-warning">'.$string.'</div>';
-          }
-          function print_info($string){
-            echo  '<div class="alert alert-info">'.$string.'</div>';
-          }
-          function print_error($string){
-            echo  '<div class="alert alert-danger">'.$string.'</div>';
-          }
-
-          function print_list(){
-            global $db;
-            $sql ='select * from users';
-            $ret = $db->query($sql);
-            echo '<table class="table table-striped"><tr><th>#</th><th>Nom</th><th>Hash</th>';
-            if (isset($_GET['cheat'])){
-                echo '<th>Cible</th></tr>';
-            }
-            while($row = $ret->fetchArray(SQLITE3_ASSOC)){
-                echo '<tr><td>'.$row['id'].'</td><td>'.$row['firstname'].'</td>'
-                    .'<td><a data-toggle="collapse" data-target="#collapse'.$row['id'].'">'.$row['hash'].'</a>'
-                    .'<div class="collapse" id="collapse'.$row['id'].'">';
-                    ?>
-                    <div class="well">
-                      <p>Cher <strong><?php echo $row['firstname'] ?></strong>,</p>
-                      <p>À l'occasion du nouvel an 2016 qui aura lieu pendant notre marche
-                        au Maroc, nous procéderons au tradionnel échange de cadeaux.</p>
-                      <p>Découvre la personne à qui tu offriras ton cadeau en cliquant sur ce lien :
-                      <a href="index.php?hash=<?php echo $row['hash']; ?>">http://varal7.fr/maroc/kdo-distrib/index.php?hash=<?php echo $row['hash'] ?></a></p>
-
-
-                    </div>
-                    <?php
-                echo '<div>'
-                    .'</td>';
-                if (isset($_GET['cheat'])){
-                    echo '<td>'.$row['target'];
-                }
-                echo '</tr>';
-            }
-            echo '</table>';
-          }
           print_list();
           ?>
         </div>
@@ -115,17 +125,6 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-3 col-xs-2"></div>
-        <div class="col-md-6 col-xs-8">
-        <?php
-         if (!checkShuffle()){
-           print_warning("L'attribution n'est pas/plus correcte ! N'oubliez pas de (re)mélanger.");
-         }
-        ?>
-        </div>
-      </div>
-
     </form>
 
       <script src="jquery.js"></script>
