@@ -90,7 +90,7 @@
            </div>
          </div>
 
-         <div class="row">
+         <div class="row text-center">
            <div class="col-md-3 col-xs-2"></div>
            <div class="col-md-6 col-xs-8">
          <?php
