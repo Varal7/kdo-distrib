@@ -18,13 +18,16 @@
 
 
       function print_warning($string){
-          echo  '<div class="alert alert-warning">'.$string.'</div>';
+          echo  '<div class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+'.$string.'</div>';
       }
       function print_info($string){
-        echo  '<div class="alert alert-info">'.$string.'</div>';
+        echo  '<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+'.$string.'</div>';
       }
       function print_error($string){
-        echo  '<div class="alert alert-danger">'.$string.'</div>';
+        echo  '<div class="alert alert-danger"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+'.$string.'</div>';
       }
 
       function print_list(){
