@@ -50,6 +50,9 @@
                   <p>Découvre la personne à qui tu offriras ton cadeau en cliquant sur ce lien :
                   <a href="index.php?hash=<?php echo $row['hash']; ?>">http://<?php echo $url; ?>?hash=<?php echo $row['hash'] ?></a></p>
 
+                <p> À très bientôt,<br/>
+                Victor Quach</p>
+
 
                 </div>
                 <?php
